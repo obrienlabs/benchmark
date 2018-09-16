@@ -5,7 +5,7 @@ import java.util.concurrent.RecursiveAction;
 
 
 /**
- * Colatz or Hailstone numbers - proof of concept for the ForkJoin framework in Java 7 from Oracle/SUN
+ * Collatz or Hailstone numbers - proof of concept for the ForkJoin framework in Java 7 from Oracle/SUN
  * 
  * @author Michael.f.obrien@eclipselink.org
  *
@@ -14,6 +14,7 @@ public class ForkJoinUnitOfWork extends RecursiveAction {
 	private static final long serialVersionUID = 2854227036188716499L;
     public static final BigInteger COLLATZ88 = BigInteger.valueOf(1980976057694848447L);     
     public static final BigInteger COLLATZ_2651 = new  BigInteger("2367363789863971985761"); // path of 2651
+    private static final BigInteger BIG_INTEGER_TWO = BigInteger.valueOf(2);
     
 	private long start;
 	private long len;
@@ -52,7 +53,7 @@ public class ForkJoinUnitOfWork extends RecursiveAction {
 			if(path > maxPath.longValue()) {
 				maxPath = BigInteger.valueOf(path);
 			}			
-			current = current.add(BigInteger.valueOf(2));			
+			current = current.add(BIG_INTEGER_TWO);			
 		}	
 		if(maxValue.compareTo(maximumValue) > 0) {			
 			maximumValue = maxValue;
