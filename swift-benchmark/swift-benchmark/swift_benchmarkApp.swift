@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+
+
+
 @main
 struct swift_benchmarkApp: App {
     var body: some Scene {
@@ -14,4 +17,5 @@ struct swift_benchmarkApp: App {
             ContentView()
         }
     }
+    
 }
