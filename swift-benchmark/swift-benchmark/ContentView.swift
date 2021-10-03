@@ -10,14 +10,15 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @State var text = "hello world"
     
     //func onAppear(perform action: (() -> self.process("onAppear")? = nil) -> some View
     
-    func process(message: String) {
-        let start = 27;
-        var i = start;
-        var max = 1;
-        var path = 1;
+    func process(message: String) -> Int64 {
+        let start: Int64 = 27;
+        var i: Int64 = start;
+        var max: Int64 = 1;
+        var path: Int64 = 1;
         while i > 1 {
             if i % 2 == 0 {
                 i = i / 2
@@ -30,11 +31,13 @@ struct ContentView: View {
             path += 1
         }
         print("max: \(max)");
+        return max;
     }
 
     var body: some View {
-        Text("Hello, world!").padding().onTapGesture {
-            self.process(message: "test2")
+        Text(text).padding().onTapGesture {
+            let max = self.process(message: "test2")
+            self.text = String(max)
             
         }
 
