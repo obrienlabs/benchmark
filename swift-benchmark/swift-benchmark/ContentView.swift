@@ -14,11 +14,16 @@ struct ContentView: View {
     
     //func onAppear(perform action: (() -> self.process("onAppear")? = nil) -> some View
     
-    func process(message: String) -> Int64 {
+    func process(message: String) -> Double {
+        
         let start: Int64 = 27;
         var i: Int64 = start;
         var max: Int64 = 1;
         var path: Int64 = 1;
+        
+        let time_start = DispatchTime.now()
+        for _ in 1...10000000 {
+        i = start;
         while i > 1 {
             if i % 2 == 0 {
                 i = i / 2
@@ -30,12 +35,16 @@ struct ContentView: View {
             }
             path += 1
         }
-        print("max: \(max)");
-        return max;
+        }
+        let time_end = DispatchTime.now()
+        let time_nano = Double(time_end.uptimeNanoseconds - time_start.uptimeNanoseconds) / 1_000_000_000
+        print("max: \(max) ns: \(time_nano)");
+        return time_nano;
     }
 
     var body: some View {
         Text(text).padding().onTapGesture {
+            self.text = "processing...."
             let max = self.process(message: "test2")
             self.text = String(max)
             
