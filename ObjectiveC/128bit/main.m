@@ -8,10 +8,10 @@
 // cli compile, linking
 // biometric:128bit michaelobrien$ gcc -framework Foundation main.m
 // biometric:128bit michaelobrien$ ./a.out 
-// 2021-10-03 19:59:29.633 a.out[31299:1026821] 9223372036854775808: 
-// 2021-10-03 19:59:29.633 a.out[31299:1026821] 1980976057694848447: 0 : 0
-// 2021-10-03 19:59:29.633 a.out[31299:1026821] 0:1980976057694848447 3470784170169173952:7073134427238031588: 1475
-//
+// MBP16 i9-9980
+//2021-10-03 20:24:19.710 a.out[31970:1041645] SRT: 1633307059.710497: ... 60 sec for 1million iter
+//2021-10-03 20:25:21.194 a.out[31970:1041645] END: 1633307121.19462: 
+//2021-10-03 20:25:21.194 a.out[31970:1041645] Duration: 61.48412322998047:
 
 #import <Foundation/Foundation.h>
 #include <stdint.h>
@@ -27,7 +27,11 @@ int main(int argc, const char * argv[]) {
     
     
     @autoreleasepool {
-            
+        NSTimeInterval timeStamp = [[NSDate date] timeIntervalSince1970];
+        // NSTimeInterval is defined as double
+        NSNumber *timeStampObj = [NSNumber numberWithDouble: timeStamp];
+        NSLog(@"SRT: %@: ... 60 sec for 1million iter", timeStampObj);
+        for (long i = 0; i <= 10000000; i++) {
         /*
          The Long datatype in Java and the corresponding __int64 datatype in C/C++ (Visual Studio 10) and the BIGINT datatype in SQL - all overflow at 64 bits which can address an Exabyte or represent the unsigned scalar 10^18 which is 18,446744,073709,551616 or 18 Quintillion.
          63 bits = start 141023943
@@ -51,8 +55,8 @@ int main(int argc, const char * argv[]) {
         unsigned long long temp0_ad = 0;
         unsigned long long temp1 = 0;
         
-        NSLog(@"%llu: ", MAXBIT);
-        NSLog(@"%llu: %llu : %i",i0, max0, path);
+        //NSLog(@"%llu: ", MAXBIT);
+        //NSLog(@"%llu: %llu : %i",i0, max0, path);
         //for (int64_t i=27; i < 223372036854775808; i+=2) {
         current0 = i0;
         current1 = i1;
@@ -111,19 +115,25 @@ int main(int argc, const char * argv[]) {
             maxSet = true;
         }
         if(maxSet) {
-            NSLog(@"%llu:%llu %llu:%llu: %i",i1,i0, max1,max0, path);
+            //NSLog(@"%llu:%llu %llu:%llu: %i",i1,i0, max1,max0, path);
         }
         //}
+
+
+        }
+        NSTimeInterval timeStamp2 = [[NSDate date] timeIntervalSince1970];
+        // NSTimeInterval is defined as double
+        NSNumber *timeStampObj2 = [NSNumber numberWithDouble: timeStamp2];
+        NSLog(@"END: %@: ", timeStampObj2);
+        NSNumber *duration = [NSNumber numberWithDouble: ([timeStampObj2 doubleValue] - [timeStampObj doubleValue])];
+        NSLog(@"Duration: %@: ", duration);
+
     }
     //printf('\007');
     return 0;
 }
 
 int main2(int argc, const char * argv[]) {
-
-    
-    
-    
     @autoreleasepool {
         
         /* connect externally */
@@ -153,7 +163,7 @@ int main2(int argc, const char * argv[]) {
         int path = 0;
         int64_t max = 0; // 64 bit signed integer, like Java's long
         int64_t i = 1410123943;//77031;//27;
-        NSLog(@"%llu: %llu: %i",i, max, path);
+        //NSLog(@"%llu: %llu: %i",i, max, path);
         //for (int64_t i=27; i < 223372036854775808; i+=2) {
             current = i;
             path = 0;
@@ -180,7 +190,7 @@ int main2(int argc, const char * argv[]) {
                 maxSet = true;
             }
             if(maxSet) {
-                NSLog(@"%llu: %llu: %i",i, max, path);
+                //NSLog(@"%llu: %llu: %i",i, max, path);
             }
         //}
     }
