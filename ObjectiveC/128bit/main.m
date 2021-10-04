@@ -5,6 +5,13 @@
 //  Created by Michael O'Brien on 2013-02-21.
 //  Copyright (c) 2013 Michael O'Brien. All rights reserved.
 //
+// cli compile, linking
+// biometric:128bit michaelobrien$ gcc -framework Foundation main.m
+// biometric:128bit michaelobrien$ ./a.out 
+// 2021-10-03 19:59:29.633 a.out[31299:1026821] 9223372036854775808: 
+// 2021-10-03 19:59:29.633 a.out[31299:1026821] 1980976057694848447: 0 : 0
+// 2021-10-03 19:59:29.633 a.out[31299:1026821] 0:1980976057694848447 3470784170169173952:7073134427238031588: 1475
+//
 
 #import <Foundation/Foundation.h>
 #include <stdint.h>
@@ -56,10 +63,10 @@ int main(int argc, const char * argv[]) {
                 // shift high byte first
                 if(current1 % 2 != 0) {
                     current0 += MAXBIT;
-                    NSLog(@"u: %llu:%llu %i",current1, current0,path);
+                    //NSLog(@"u: %llu:%llu %i",current1, current0,path);
                 }
                 current1 = current1 >> 1;
-                NSLog(@"x: %llu:%llu %i",current1, current0,path);
+                //NSLog(@"x: %llu:%llu %i",current1, current0,path);
             } else {
                 temp1 = 3 * current1;// + (current1 << 1);
                 current1 = temp1;
@@ -68,29 +75,29 @@ int main(int argc, const char * argv[]) {
                 temp0_sh = 1 + (current0 << 1);
                 if(!(current0 < MAXBIT)) {
                     current1 = current1 + 1;
-                    NSLog(@"o1: %llu:%llu %i",current1, temp0_sh,path);
+                    //NSLog(@"o1: %llu:%llu %i",current1, temp0_sh,path);
 
                 }
                 // add second - calc overflow 2
                 temp0_ad = temp0_sh + current0;
                 if(temp0_ad < current0) { // overflow
                     current1 = current1 + 1;
-                    NSLog(@"o2: %llu:%llu %i",current1, temp0_ad,path);
+                    //NSLog(@"o2: %llu:%llu %i",current1, temp0_ad,path);
                 }
                 current0 = temp0_ad;
-                NSLog(@"z: %llu:%llu %i",current1, current0,path);
+                //NSLog(@"z: %llu:%llu %i",current1, current0,path);
                 
             }
             path++;
             if(max1 < current1) {
                 max1 = current1;
                 max0 = current0;
-                NSLog(@"a: %llu: %llu: %i",max1, max0, path);
+                //NSLog(@"a: %llu: %llu: %i",max1, max0, path);
             }
             if(max1 == current1) {
                 if(max0 < current0) {
                     max0 = current0;
-                    //NSLog(@"b: %llu: %lld: %i",max1, max0, path);
+                    ////NSLog(@"b: %llu: %lld: %i",max1, max0, path);
                 }
             }
         }
