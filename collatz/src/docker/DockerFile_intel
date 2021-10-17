@@ -1,0 +1,12 @@
+#FROM anapsix/alpine-java:jre8
+FROM openjdk:11
+
+ARG USERVICE_HOME=/opt/app/
+
+# Build up the deployment folder structure
+RUN mkdir -p $USERVICE_HOME
+
+ADD org.obrienscience.collatz.server.ForkJoinCollatzServer*.jar $USERVICE_HOME/lib/org.obrienscience.collatz.server.ForkJoinCollatzServer.jar
+ADD startService.sh $USERVICE_HOME/bin/
+
+CMD ["/opt/app/bin/startService.sh"]
