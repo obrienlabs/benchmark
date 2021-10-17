@@ -1,5 +1,5 @@
 #FROM anapsix/alpine-java:jre8
-FROM openjdk:11
+FROM openjdk:17
 
 ARG USERVICE_HOME=/opt/app/
 

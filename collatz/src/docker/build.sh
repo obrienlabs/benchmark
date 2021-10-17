@@ -10,8 +10,8 @@ mkdir ../../$BUILD_DIR
 TARGET_DIR=../../$BUILD_DIR/$BUILD_ID
 mkdir $TARGET_DIR
 CONTAINER_IMAGE=collatz-se
-#TAG=intel
-TAG=arm
+TAG=intel
+#TAG=arm
 
 cp ../../../*.jar $TARGET_DIR
 cp DockerFile* $TARGET_DIR
