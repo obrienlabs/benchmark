@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: collatz
+  namespace: default
+  labels:
+    k8s-app: collatz
+spec:
+  selector:
+    matchLabels:
+      name: collatz
+  template:
+    metadata:
+      labels:
+        name: collatz
+    spec:
+      tolerations:
+      # this toleration is to have the daemonset runnable on master nodes
+      # remove it if your masters can't run pods
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - name: collatz
+        image: obrienlabs/collatz-se:0.0.1
+        resources:
+          limits:
+            cpu: "8"
+          requests:
+            cpu: "1"
+      terminationGracePeriodSeconds: 30
