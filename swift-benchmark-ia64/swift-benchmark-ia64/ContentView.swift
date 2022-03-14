@@ -13,6 +13,8 @@
 //  11.10 sec on iphone 12 pro
 //  10.60 sec on M1 macmini 2020
 //  10.48 sec on M1 ipad pro 3nd gen 12.9 inch
+//  9.6   sec on M1 Max 10/32 Macbook Pro 2021 16 inch (max)
+//  9.2   sec on M1 Pro 8/14 Macbook Pro 2021 14 inch (entry)
 //
 //
 
