@@ -16,6 +16,7 @@
 //  10.48 sec on M1 ipad pro 3nd gen 12.9 inch
 //  9.18  sec on M1 Max 10c/32gpu/16npu/32g Macbook Pro 2021 16 inch (max)  - $4.9k
 //  9.17  sec on M1 Pro 8c/14gpu/16npu/16g Macbook Pro 2021 14 inch (entry) - $2.7k
+//  8.72  sec on iphone 13 pro
 //
 //  multi core
 
