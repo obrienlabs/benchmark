@@ -3,7 +3,8 @@
 //  swift-benchmark-ia64
 //
 //  Created by michaelobrien on 2021-10-03.
-//  20210930: 10 million 9232 collatz iterations - single core
+//  20210930: 10 million 9232 collatz iterations
+//  single core
 //  36.58 sec on i9-9980 MBP16 emulating iphone 13 pro
 //  23.33 sec on i9-9980 MBP16 2019 native ia64
 //  21.11 sec ib i9-9980 MBP15 2019 native ia64
@@ -13,10 +14,10 @@
 //  11.10 sec on iphone 12 pro
 //  10.60 sec on M1 macmini 2020
 //  10.48 sec on M1 ipad pro 3nd gen 12.9 inch
-//  9.54  sec on M1 Max 10/32 Macbook Pro 2021 16 inch (max)  - $4.9k
-//  9.17  sec on M1 Pro 8/14 Macbook Pro 2021 14 inch (entry) - $2.7k
+//  9.18  sec on M1 Max 10c/32gpu/16npu/32g Macbook Pro 2021 16 inch (max)  - $4.9k
+//  9.17  sec on M1 Pro 8c/14gpu/16npu/16g Macbook Pro 2021 14 inch (entry) - $2.7k
 //
-//
+//  multi core
 
 import SwiftUI
 
