@@ -1,4 +1,4 @@
-package org.obrienscience.collatz.server;
+package org.obrienscience.collatz.model;
 
 import java.math.BigInteger;
 
