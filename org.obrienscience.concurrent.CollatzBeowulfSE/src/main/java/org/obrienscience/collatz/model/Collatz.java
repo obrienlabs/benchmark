@@ -5,6 +5,9 @@ import java.math.BigInteger;
 /**
  * 20221023: revisit Collatz sequences - software and hardware
  * Base entity + logic
+ * java -cp target/classes org.obrienscience.collatz.model.Collatz 24 32 false 665 4799996945368
+ *  
+ * 
  * @author fmichaelobrien@google.com
  *
  */
@@ -20,6 +23,9 @@ public class Collatz {
 	private BigInteger path = BigInteger.ZERO;
 	private BigInteger height = BigInteger.ZERO;
 	private boolean displayIterations = false;
+	private BigInteger prevMaxPath = BigInteger.ZERO;
+	private BigInteger prevMaxValue = BigInteger.ZERO;
+	
 	
 	public Collatz(long aStart) {
 		start = BigInteger.valueOf(aStart);
@@ -43,6 +49,20 @@ public class Collatz {
 		start = aStart;
 		end = aEnd;
 		displayIterations = aDisplayIterations;
+	}
+	
+	public Collatz(int aStart, int aEnd, boolean aDisplayIterations) {
+		start = BigInteger.valueOf(2).pow(aStart);
+		end = BigInteger.valueOf(2).pow(aEnd);
+		displayIterations = aDisplayIterations;
+	}
+	
+	public Collatz(int aStart, int aEnd, boolean aDisplayIterations, BigInteger maxPath, BigInteger maxValue) {
+		start = BigInteger.valueOf(2).pow(aStart);
+		end = BigInteger.valueOf(2).pow(aEnd);
+		displayIterations = aDisplayIterations;
+		prevMaxPath = maxPath;
+		prevMaxValue = maxValue;
 	}
 	
 	public void compute() {
@@ -84,20 +104,18 @@ public class Collatz {
 	}
 
 	
-	public void compute(BigInteger aStart) {
-		computeRange(aStart, end);
-	}
-	public void computeRange(BigInteger aStart, BigInteger aStop) {
-		BigInteger maxValue = aStart;
+	public void computeRange() {
+		BigInteger maxValue = start;
 		BigInteger maxPath = BigInteger.ONE;
-		BigInteger gmaxValue = aStart;
-		BigInteger gmaxPath = BigInteger.ONE;
-		long lastMaxTime = System.currentTimeMillis();		
+		BigInteger gmaxValue = prevMaxValue;
+		BigInteger gmaxPath = prevMaxPath;
+		long lastMaxTime = System.currentTimeMillis();	
+		long totalStartTime = lastMaxTime;
 		
 		long path = 0;
 		boolean newMax = false;
-		BigInteger current = aStart;
-		while(current.compareTo(aStop) != 0) {
+		BigInteger current = start;
+		while(current.compareTo(end) != 0) {
 			BigInteger prev = current;
 			path = 0;
 			maxValue = BigInteger.ZERO;
@@ -136,29 +154,42 @@ public class Collatz {
 			}
 			current = current.add(BIG_INTEGER_TWO);	
 		}
+		System.out.println("Total time: " + (System.currentTimeMillis() - totalStartTime));
 	}
 	
 	
 	
 	public static void main(String[] args) {
 
-		BigInteger aStart = BigInteger.valueOf(27);
-		BigInteger aEnd = BigInteger.valueOf(27);
+		//BigInteger aStart = BigInteger.valueOf(27);
+		//BigInteger aEnd = BigInteger.valueOf(27);
+		int aStart = 2;
+		int aEnd = 20;
+		BigInteger maxPath = BigInteger.valueOf(1);
+		BigInteger maxValue = BigInteger.valueOf(1);
 		
 		boolean aDisplayIterations = false;
-		System.out.println("collatz start stop displayIterations(true/false)");
+		System.out.println("collatz (power of 2 exponent) start stop displayIterations(true/false) maxPath maxValue");
 	    if(null != args && args.length > 0) {
-        	aStart = new BigInteger(args[0]);
+        	aStart = Integer.parseInt(args[0]);// BigInteger(args[0]);
         }   
 	    if(null != args && args.length > 1) {
-        	aEnd = new BigInteger(args[1]);
+        	aEnd = Integer.parseInt(args[1]);//new BigInteger(args[1]);
         }  
 	    if(null != args && args.length > 2) {
 	    	aDisplayIterations = Boolean.parseBoolean(args[1]);
         }  
-		Collatz collatz = new Collatz(aStart, aEnd, aDisplayIterations);
+	    if(null != args && args.length > 3) {
+        	maxPath = new BigInteger(args[3]);
+        }
+	    if(null != args && args.length > 4) {
+        	maxValue = new BigInteger(args[4]);
+        }
+	    System.out.println("p: " + maxPath + " v: " + maxValue);
+	    //System.out.println(BigInteger.valueOf(2).pow(aStart));
+		Collatz collatz = new Collatz(aStart, aEnd, aDisplayIterations, maxPath, maxValue);
 		//collatz.compute();
-		collatz.computeRange(aStart, aEnd);
+		collatz.computeRange();//aStart, aEnd);
 
 	}
 
