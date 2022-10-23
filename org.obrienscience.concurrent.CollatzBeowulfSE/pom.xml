@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cloud.obrienlabs.concurrent.collatz</groupId>
 	<artifactId>ForkJoinCollatzServer</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<name>forkjoincollatzserver</name>
 	<description>ForkJoinCollatzServer project</description>
     <packaging>jar</packaging>
