@@ -6,7 +6,8 @@ import java.math.BigInteger;
  * 20221023: revisit Collatz sequences - software and hardware
  * Base entity + logic
  * java -cp target/classes org.obrienscience.collatz.model.Collatz 24 32 false 665 4799996945368
- *  
+ * S: 13263350 M: 60342610919632 P: 577 T: 18035
+ * S: 16801022 M: 159424614880 P: 686 T: 11747 
  * 
  * @author fmichaelobrien@google.com
  *
@@ -58,7 +59,7 @@ public class Collatz {
 	}
 	
 	public Collatz(int aStart, int aEnd, boolean aDisplayIterations, BigInteger maxPath, BigInteger maxValue) {
-		start = BigInteger.valueOf(2).pow(aStart);
+		start = BigInteger.valueOf(2).pow(aStart).add(BigInteger.ONE);
 		end = BigInteger.valueOf(2).pow(aEnd);
 		displayIterations = aDisplayIterations;
 		prevMaxPath = maxPath;
