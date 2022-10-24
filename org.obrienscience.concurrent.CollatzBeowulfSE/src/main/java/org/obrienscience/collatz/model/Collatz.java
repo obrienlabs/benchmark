@@ -328,6 +328,19 @@ S: 80049391 M: 2185143829170100 P: 572 T: 29476 21 quadrillion
 1 trillion = 2^40 1099511627776
 
 
+m1max
+
+S: 11371756681 M: 18144594937356598024 P: 729 T: 10632081
+S: 12212032815 M: 319497287463520 P: 1153 T: 3523573
+S: 12235060455 M: 1037298361093936 P: 1184 T: 110821
+S: 12327829503 M: 20722398914405051728 P: 543 T: 441373
+S: 13371194527 M: 319497287463520 P: 1210 T: 5538812
+Total time: 42248998
+michaelobrien@mbp7 org.obrienscience.concurrent.CollatzBeowulfSE % 
+michaelobrien@mbp7 org.obrienscience.concurrent.CollatzBeowulfSE % 
+michaelobrien@mbp7 org.obrienscience.concurrent.CollatzBeowulfSE % java -cp target/classes org.obrienscience.collatz.model.Collatz 33 34 false 1132 18144584837356598024
+
+
 0,1
 1,2
 2,4
