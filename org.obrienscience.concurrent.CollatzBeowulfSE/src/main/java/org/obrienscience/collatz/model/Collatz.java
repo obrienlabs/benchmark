@@ -340,6 +340,24 @@ michaelobrien@mbp7 org.obrienscience.concurrent.CollatzBeowulfSE %
 michaelobrien@mbp7 org.obrienscience.concurrent.CollatzBeowulfSE % 
 michaelobrien@mbp7 org.obrienscience.concurrent.CollatzBeowulfSE % java -cp target/classes org.obrienscience.collatz.model.Collatz 33 34 false 1132 18144584837356598024
 
+m1max
+java -cp target/classes org.obrienscience.collatz.model.Collatz 36 37 false 1219 68838156641548227040
+
+
+p: 1219 v: 68838156641548227040
+S: 68807943407 M: 82341648902022834004 P: 553 T: 244566
+S: 68985781929 M: 114639617141613998440 P: 773 T: 800968
+S: 70141259775 M: 420967113788389829704 P: 1109 T: 5226398
+S: 75128138247 M: 319497287463520 P: 1228 T: 23533694
+S: 77566362559 M: 916613029076867799856 P: 755 T: 6001903
+
+S: 110243094271 M: 1372453649566268380360 P: 572 T: 83803763
+
+S: 133561134663 M: 319497287463520 P: 1234 T: 62318500
+Total time: 191653584
+michaelobrien@mbp7 org.obrienscience.concurrent.CollatzBeowulfSE % 
+michaelobrien@mbp7 org.obrienscience.concurrent.CollatzBeowulfSE % 
+michaelobrien@mbp7 org.obrienscience.concurrent.CollatzBeowulfSE % java -cp target/classes org.obrienscience.collatz.model.Collatz 36 37 false 1219 68838156641548227040
 
 0,1
 1,2
