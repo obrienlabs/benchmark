@@ -116,6 +116,7 @@ public class Collatz {
 		long path = 0;
 		boolean newMax = false;
 		BigInteger current = start;
+		System.out.println("Computing..." + end);
 		while(current.compareTo(end) < 0) {
 			BigInteger prev = current;
 			path = 0;
