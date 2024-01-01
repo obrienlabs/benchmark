@@ -26,6 +26,8 @@ public class Collatz {
 	private boolean displayIterations = false;
 	private BigInteger prevMaxPath = BigInteger.ZERO;
 	private BigInteger prevMaxValue = BigInteger.ZERO;
+	private BigInteger pathCount = BigInteger.ZERO;
+	private BigInteger heightCount = BigInteger.ZERO;
 	
 	
 	public Collatz(long aStart) {
@@ -100,8 +102,8 @@ public class Collatz {
 			}
 		}
 		long time = System.currentTimeMillis() - startTime;
-		System.out.println("start,path,max,ms");
-		System.out.println(start + "," + path + "," + height + "," + time);
+		System.out.println("pcount,hcount,start,path,max,ms");
+		System.out.println(pathCount + "," + heightCount + "," + start + "," + path + "," + height + "," + time);
 	}
 
 	
@@ -120,13 +122,13 @@ public class Collatz {
 		while(current.compareTo(end) < 0) {
 			BigInteger prev = current;
 			path = 0;
-			maxValue = BigInteger.ZERO;
-			maxPath = BigInteger.ZERO;
+			maxValue = BigInteger.ONE;
+			maxPath = BigInteger.ONE;
 			newMax = false;
 			
 			while (prev.compareTo(BigInteger.ONE) > 0) {
 				if(prev.testBit(0)) {
-					prev = prev.shiftLeft(1).add(prev).add(BigInteger.ONE);
+					prev = prev.shiftLeft(1).add(prev).add(BigInteger.ONE); // NPE before 8528,817511
 				} else {
 					prev = prev.shiftRight(1);
 				}
@@ -142,15 +144,16 @@ public class Collatz {
 			if(maxValue.compareTo(gmaxValue) > 0) {			
 				gmaxValue = maxValue;
 				newMax = true;
+				heightCount = heightCount.add(BigInteger.ONE);
 			}
 		
 			if(maxPath.compareTo(gmaxPath) > 0) {			
 				gmaxPath = maxPath;		
 				newMax = true;
+				pathCount = pathCount.add(BigInteger.ONE);
 			}
 			if(newMax) {
-
-				System.out.println("S: " + current + " M: " + maxValue + " P: " + maxPath 
+				System.out.println("PC: " + pathCount + " HC: " + heightCount + " S: " + current + " M: " + maxValue + " P: " + maxPath 
 						+ " T: " + (System.currentTimeMillis() - lastMaxTime));
 				lastMaxTime = System.currentTimeMillis();
 			}

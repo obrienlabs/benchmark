@@ -65,7 +65,7 @@ public class ForkJoinUnitOfWork extends RecursiveAction {
 			newMax = true;
 		}
 		if(newMax) {
-			//System.out.println("S: " + start + " N: " + current + " M: " + maxValue + " P: " + maxPath);
+			System.out.println("S: " + start + " N: " + current + " M: " + maxValue + " P: " + maxPath + " thread: " + Thread.currentThread().getId());
 		}
 	}
 	

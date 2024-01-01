@@ -11,7 +11,7 @@ public class ForkJoinCollatzServer {
 		BigInteger maxValue = BigInteger.ONE;
 		ForkJoinUnitOfWork forkJoinUOW = new ForkJoinUnitOfWork(uowSplit, 0, extent, maxPath, maxValue);
 		long startTime = System.currentTimeMillis();
-		// create a ppol of threads to the power of pool * # of (proc + ht)
+		// create a pool of threads to the power of pool * # of (proc + ht)
 		mapReducePool = new ForkJoinPool(1 << pool);//Runtime.getRuntime().availableProcessors() << pool);
 		mapReducePool.invoke(forkJoinUOW);
 		long endTime = System.currentTimeMillis();
@@ -24,7 +24,7 @@ public class ForkJoinCollatzServer {
 	}
 	
 	public static void main(String[] args) {
-	    System.out.println("ForkJoinCollatzServer forkJoinPool-power-start end runs (v 20161009)");
+	    System.out.println("ForkJoinCollatzServer forkJoinPool-power-start end runs (v 20240101)");
 		long poolStart = 0;
 		long poolEnd = 7;
 		long runs = 1;
