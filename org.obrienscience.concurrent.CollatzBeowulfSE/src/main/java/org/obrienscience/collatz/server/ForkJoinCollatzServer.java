@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.util.concurrent.ForkJoinPool;
 
 public class ForkJoinCollatzServer {
-    private ForkJoinPool mapReducePool;
+    protected ForkJoinPool mapReducePool;
 	
 	public void compute(long pool, long threads, long uowSplit, long extent) {
 		BigInteger maxPath = BigInteger.ONE;
