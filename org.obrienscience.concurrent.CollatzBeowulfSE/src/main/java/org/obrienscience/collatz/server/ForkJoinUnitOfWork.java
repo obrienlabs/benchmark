@@ -14,13 +14,13 @@ public class ForkJoinUnitOfWork extends RecursiveAction {
 	private static final long serialVersionUID = 2854227036188716499L;
     public static final BigInteger COLLATZ88 = BigInteger.valueOf(1980976057694848447L);     
     public static final BigInteger COLLATZ_2651 = new  BigInteger("2367363789863971985761"); // path of 2651
-    private static final BigInteger BIG_INTEGER_TWO = BigInteger.valueOf(2);
+    protected static final BigInteger BIG_INTEGER_TWO = BigInteger.valueOf(2);
     
-	private long start;
-	private long len;
-	private long uowSplit = 1024;
-	private BigInteger maximumPath;
-	private BigInteger maximumValue;
+	protected long start;
+	protected long len;
+	protected long uowSplit = 1024;
+	protected BigInteger maximumPath;
+	protected BigInteger maximumValue;
 	
 	public ForkJoinUnitOfWork(long split, long start, long len, BigInteger maxPath, BigInteger maxValue) {
 		this.uowSplit = split;
