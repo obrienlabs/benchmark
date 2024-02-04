@@ -1,7 +1,11 @@
 package org.obrienscience.collatz.server;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.StringTokenizer;
+import java.util.stream.Collectors;
 
 // 20160730
 public class Memory {
@@ -24,9 +28,26 @@ public class Memory {
 	}
 	
 	
+	
+	
+	public Optional<String> random(String input) {
+		List<String> strings = Collections.list(new StringTokenizer(input, ",")).stream()
+	      .map(token -> (String) token)
+	      .collect(Collectors.toList());
+		return Optional.of(strings.get((int)(Math.random() * strings.size())));
+	}
+	
+
+// print first 10 random numbers
+	
+
+
+
 	public static void main(String[] args) {
 		Memory memory = new Memory();
-		memory.forceOutOfMemoryError();
+		//memory.forceOutOfMemoryError();
+		String input = "first,second,third,forth,fifth";
+		System.out.println(memory.random(input).get());
 	}
 
 }

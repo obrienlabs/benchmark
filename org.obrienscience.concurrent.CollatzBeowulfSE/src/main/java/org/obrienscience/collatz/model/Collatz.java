@@ -1,6 +1,8 @@
 package org.obrienscience.collatz.model;
 
 import java.math.BigInteger;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 20221023: revisit Collatz sequences - software and hardware
@@ -28,6 +30,8 @@ public class Collatz {
 	private BigInteger prevMaxValue = BigInteger.ZERO;
 	private BigInteger pathCount = BigInteger.ZERO;
 	private BigInteger heightCount = BigInteger.ZERO;
+	
+	private Map<BigInteger, BigInteger> paths = new HashMap<BigInteger, BigInteger>();
 	
 	
 	public Collatz(long aStart) {
@@ -106,8 +110,69 @@ public class Collatz {
 		System.out.println(pathCount + "," + heightCount + "," + start + "," + path + "," + height + "," + time);
 	}
 
-	
+
 	public void computeRange() {
+		BigInteger maxValue = start;
+		BigInteger maxPath = BigInteger.ONE;
+		BigInteger gmaxValue = prevMaxValue;
+		BigInteger gmaxPath = prevMaxPath;
+		long lastMaxTime = System.currentTimeMillis();	
+		long totalStartTime = lastMaxTime;
+		
+		long path = 0;
+		boolean newMax = false;
+		BigInteger current = start;
+		BigInteger lastCurrent = BigInteger.ONE;
+		System.out.println("Computing..." + end);
+		while(current.compareTo(end) < 0) {
+			BigInteger prev = current;
+			path = 0;
+			maxValue = BigInteger.ONE;
+			maxPath = BigInteger.ONE;
+			newMax = false;
+			
+			//while (prev.compareTo(BigInteger.ONE) > 0) {
+			while (prev.compareTo(lastCurrent) > 0) { // drops time from 14 to 9 sec
+				if(prev.testBit(0)) {
+					prev = prev.shiftLeft(1).add(prev).add(BigInteger.ONE); // NPE before 8528,817511
+				} else {
+					prev = prev.shiftRight(1);
+				}
+				path++;
+				if(prev.compareTo(maxValue) > 0) {
+					maxValue = prev;
+				}
+			}
+			if(path > maxPath.longValue()) {
+				maxPath = BigInteger.valueOf(path);
+			}			
+		
+			if(maxValue.compareTo(gmaxValue) > 0) {			
+				gmaxValue = maxValue;
+				newMax = true;
+				heightCount = heightCount.add(BigInteger.ONE);
+			}
+		
+			if(maxPath.compareTo(gmaxPath) > 0) {			
+				gmaxPath = maxPath;		
+				newMax = true;
+				pathCount = pathCount.add(BigInteger.ONE);
+			}
+			if(newMax) {
+				System.out.println("PC: " + pathCount + " HC: " + heightCount + " S: " + current + " M: " + maxValue + " P: " + maxPath 
+						+ " T: " + (System.currentTimeMillis() - lastMaxTime));
+				lastMaxTime = System.currentTimeMillis();
+			}
+			lastCurrent = current;
+			current = current.add(BIG_INTEGER_TWO);	
+		}
+		System.out.println("Total time: " + (System.currentTimeMillis() - totalStartTime));
+	}
+	
+	/**
+	 * 13941 on M1max 
+	 */
+	public void computeRange1bruteForce() {
 		BigInteger maxValue = start;
 		BigInteger maxPath = BigInteger.ONE;
 		BigInteger gmaxValue = prevMaxValue;
@@ -162,14 +227,16 @@ public class Collatz {
 		System.out.println("Total time: " + (System.currentTimeMillis() - totalStartTime));
 	}
 	
-	
-	
+	// 2.02 vs 2.25 growth
+	// 6400
+	// 12700
+	// 25900
 	public static void main(String[] args) {
 
 		//BigInteger aStart = BigInteger.valueOf(27);
 		//BigInteger aEnd = BigInteger.valueOf(27);
-		int aStart = 2;
-		int aEnd = 20;
+		int aStart = 1;
+		int aEnd = 28;
 		BigInteger maxPath = BigInteger.valueOf(1);
 		BigInteger maxValue = BigInteger.valueOf(1);
 		
@@ -193,14 +260,15 @@ public class Collatz {
 	    
 	    
 	    // powers of 2
-	    for(int i=0;i<129;i++) {
-	    	System.out.println(i + "," + BigInteger.valueOf(2).pow(i));
-	    }
+	    //for(int i=0;i<129;i++) {
+	    //	System.out.println(i + "," + BigInteger.valueOf(2).pow(i));
+	    //}
 	    
 	    System.out.println("p: " + maxPath + " v: " + maxValue);
 	    //System.out.println(BigInteger.valueOf(2).pow(aStart));
 		Collatz collatz = new Collatz(aStart, aEnd, aDisplayIterations, maxPath, maxValue);
 		//collatz.compute();
+		
 		collatz.computeRange();//aStart, aEnd);
 
 	}
