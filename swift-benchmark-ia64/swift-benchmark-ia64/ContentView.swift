@@ -9,17 +9,21 @@
 //  23.33 sec on i9-9980 MBP16 2019 native ia64
 //  21.11 sec ib i9-9980 MBP15 2019 native ia64
 //  14.45 sec on M1 macmini 2020 - rosetta
-//  13.32 sec on ipad pro 2nd gen 11inch
+//  13.32 sec on ipad pro 2nd gen 11 inch
 //  11.23 sec on iphone 12 pro max
 //  11.10 sec on iphone 12 pro
 //  10.60 sec on M1 macmini 2020
-//  10.48 sec on M1 ipad pro 3nd gen 12.9 inch
+//  10.48 sec on M1 ipad pro 5th gen 12.9 inch
+//  9.79  sec on iphone 13 mini 202411 latest 18.1
+//  9.47  sec on iphone 16 pro max (emulation 18.0) on M1 Max - MacOS 15.1
 //  9.18  sec on M1 Max 10c/32gpu/16npu/32g Macbook Pro 2021 16 inch (max)  - $4.9k
 //  9.17  sec on M1 Pro 8c/14gpu/16npu/16g Macbook Pro 2021 14 inch (entry) - $2.7k
+//  8.99  sec on iphone 14 pro
 //  8.73  sec on iphone 13 mini
 //  8.72  sec on iphone 13 pro
 //  8.52  sec on iphone 13 mini (emulation) on M1 Max 10c/32gpu/16npu/32g Macbook Pro 2021 16 inch (max)
-//
+//  6.45  sec on iphone 15 pro max 18.1
+//  4.5   sec on M4 ipad pro 5th gen 13 inch 18.1
 //  multi core
 
 import SwiftUI
