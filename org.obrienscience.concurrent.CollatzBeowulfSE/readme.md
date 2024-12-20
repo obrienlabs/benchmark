@@ -3,6 +3,7 @@
 ## 1982+
 ## Links
 - Eric Roosendaal http://www.ericr.nl/wondrous/pathrecs.html
+- https://en.wikipedia.org/wiki/Collatz_conjecture
 
 ## Stats
 ### Single threaded - brute force - no hashmap tree or bit manipulation
