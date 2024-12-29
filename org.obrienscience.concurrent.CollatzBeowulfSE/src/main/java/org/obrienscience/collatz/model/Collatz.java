@@ -284,7 +284,7 @@ public class Collatz {
 						+ " T: " + (System.currentTimeMillis() - lastMaxTime));
 				lastMaxTime = System.currentTimeMillis();
 			}
-			current = current + 1;	
+			current = current + 2;	
 		}
 		System.out.println("Total time: " + (System.currentTimeMillis() - totalStartTime));
 	}
@@ -300,7 +300,7 @@ public class Collatz {
 		//BigInteger aStart = BigInteger.valueOf(27);
 		//BigInteger aEnd = BigInteger.valueOf(27);
 		int aStart = 1;
-		int aEnd = 28;
+		int aEnd = 32;
 		BigInteger maxPath = BigInteger.valueOf(1);
 		BigInteger maxValue = BigInteger.valueOf(1);
 		
@@ -334,8 +334,10 @@ public class Collatz {
 		//collatz.compute();
 		
 		//collatz.computeRange();//aStart, aEnd);
+		long maxEnd = (1 << 31) - 1;
+		System.out.println(maxEnd);
+		collatz.computeRange1bruteForceLong(1,  maxEnd);
 		//collatz.computeRange1bruteForce();
-		collatz.computeRange1bruteForceLong(1, 2 << aEnd );
 
 	}
 
