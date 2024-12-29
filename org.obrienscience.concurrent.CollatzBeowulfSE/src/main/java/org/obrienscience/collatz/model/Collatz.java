@@ -111,7 +111,7 @@ public class Collatz {
 	}
 
 
-	public void computeRange() {
+	public void computeRangeAboveStart() {
 		BigInteger maxValue = start;
 		BigInteger maxPath = BigInteger.ONE;
 		BigInteger gmaxValue = prevMaxValue;
@@ -227,6 +227,69 @@ public class Collatz {
 		System.out.println("Total time: " + (System.currentTimeMillis() - totalStartTime));
 	}
 	
+	/**
+	 * 20241228
+	 * Use long instead of BigInteger
+	 */
+	public void computeRange1bruteForceLong(long aStart, long anEnd) {
+		long maxValue = aStart;
+		long maxPath = 1L;
+		long gmaxValue = 0L;
+		long gmaxPath = 0L;
+		long lastMaxTime = System.currentTimeMillis();	
+		long totalStartTime = lastMaxTime;
+		long aHeightCount = 0L;
+		long aPathCount = 0L;
+		
+		long path = 0;
+		boolean newMax = false;
+		long current = aStart;
+		System.out.println("Computing..." + anEnd);
+		while(current < anEnd) {
+			long prev = current;
+			path = 0;
+			maxValue = 1L;
+			maxPath = 1L;
+			newMax = false;
+			
+			while (prev > 0) {
+				// use low bit modulus
+				if((prev & 1) == 0) {
+					prev = prev / 2;
+				} else {
+					prev = prev * 3 + 1; 
+						}
+				path++;
+				if(prev > maxValue) {
+					maxValue = prev;
+				}
+			}
+			if(path > maxPath) {
+				maxPath = path;
+			}			
+		
+			if(maxValue > gmaxValue) {			
+				gmaxValue = maxValue;
+				newMax = true;
+				aHeightCount = aHeightCount + 1;
+			}
+		
+			if(maxPath > gmaxPath) {			
+				gmaxPath = maxPath;		
+				newMax = true;
+				aPathCount = aPathCount + 1;
+			}
+			if(newMax) {
+				System.out.println("PC: " + pathCount + " HC: " + heightCount + " S: " + current + " M: " + maxValue + " P: " + maxPath 
+						+ " T: " + (System.currentTimeMillis() - lastMaxTime));
+				lastMaxTime = System.currentTimeMillis();
+			}
+			current = current + 1;	
+		}
+		System.out.println("Total time: " + (System.currentTimeMillis() - totalStartTime));
+	}
+
+	
 	// 2.02 vs 2.25 growth
 	// 6400
 	// 12700
@@ -269,7 +332,9 @@ public class Collatz {
 		Collatz collatz = new Collatz(aStart, aEnd, aDisplayIterations, maxPath, maxValue);
 		//collatz.compute();
 		
-		collatz.computeRange();//aStart, aEnd);
+		//collatz.computeRange();//aStart, aEnd);
+		//collatz.computeRange1bruteForce();
+		collatz.computeRange1bruteForceLong(1, 2 << aEnd );
 
 	}
 
