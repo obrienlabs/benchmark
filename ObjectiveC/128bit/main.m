@@ -33,7 +33,8 @@ int main(int argc, const char * argv[]) {
         NSLog(@"SRT: %@: ... 60 sec for 1million iter", timeStampObj);
         for (long i = 0; i <= 10000000; i++) {
         /*
-         The Long datatype in Java and the corresponding __int64 datatype in C/C++ (Visual Studio 10) and the BIGINT datatype in SQL - all overflow at 64 bits which can address an Exabyte or represent the unsigned scalar 10^18 which is 18,446744,073709,551616 or 18 Quintillion.
+         The Long datatype in Java and the corresponding __int64 datatype in C/C++ (Visual Studio 10) and the BIGINT datatype in SQL 
+         - all overflow at 64 bits which can address an Exabyte or represent the unsigned scalar 10^18 which is 18,446744,073709,551616 or 18 Quintillion.
          63 bits = start 141023943
          */
         
@@ -48,6 +49,8 @@ int main(int argc, const char * argv[]) {
         unsigned long long max0 = 0; // 64 bit unsigned integer, like Java's long
         unsigned long long max1 = 0;
         // 1,980,976,057,694,848447 // record 88 61 bits 125 max 64,024,667,322,193,133,530,165,877,294,264,738,020
+        // see http://www.ericr.nl/wondrous/pathrecs.html
+        // 71 and 140 bit result - 1765,856170,146672,440559 max 788340,337342,148717,335104,033908,060039,028328	
         //unsigned long long i0 = 534136224795llu;//446559217279;//1410123943;//77031;//27;
         unsigned long long i0 = 1980976057694848447llu;//446559217279llu;//1410123943;//77031;//27;
         unsigned long long i1 = 0;
