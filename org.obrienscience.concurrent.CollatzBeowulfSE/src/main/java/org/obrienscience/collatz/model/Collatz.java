@@ -252,13 +252,13 @@ public class Collatz {
 			maxPath = 1L;
 			newMax = false;
 			
-			while (prev > 0) {
+			while (prev > 1) {
 				// use low bit modulus
 				if((prev & 1) == 0) {
 					prev = prev / 2;
 				} else {
 					prev = prev * 3 + 1; 
-						}
+				}
 				path++;
 				if(prev > maxValue) {
 					maxValue = prev;
@@ -288,6 +288,7 @@ public class Collatz {
 		}
 		System.out.println("Total time: " + (System.currentTimeMillis() - totalStartTime));
 	}
+
 
 	
 	// 2.02 vs 2.25 growth
