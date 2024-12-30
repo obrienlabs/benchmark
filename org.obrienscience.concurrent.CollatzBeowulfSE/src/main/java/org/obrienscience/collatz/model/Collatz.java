@@ -233,59 +233,52 @@ public class Collatz {
 	 */
 	public void computeRange1bruteForceLong(long aStart, long anEnd) {
 		long maxValue = aStart;
-		long maxPath = 1L;
-		long gmaxValue = 0L;
-		long gmaxPath = 0L;
+		long globalMaxValue = 0L;
+		short globalMaxPath = 0;
 		long lastMaxTime = System.currentTimeMillis();	
 		long totalStartTime = lastMaxTime;
 		long aHeightCount = 0L;
 		long aPathCount = 0L;
 		
-		long path = 0;
-		boolean newMax = false;
+		short path = 0;
 		long current = aStart;
 		System.out.println("Computing..." + anEnd);
 		while(current < anEnd) {
 			long prev = current;
 			path = 0;
 			maxValue = 1L;
-			maxPath = 1L;
-			newMax = false;
 			
-			while (prev > 1) {
+			while (prev > 1L) {
 				// use low bit modulus
 				if((prev & 1) == 0) {
-					prev = prev / 2;
+					prev = prev / 2L;
 				} else {
-					prev = prev * 3 + 1; 
+					prev = 1L + prev * 3L; 
 				}
 				path++;
 				if(prev > maxValue) {
 					maxValue = prev;
 				}
-			}
-			if(path > maxPath) {
-				maxPath = path;
-			}			
+			}		
 		
-			if(maxValue > gmaxValue) {			
-				gmaxValue = maxValue;
-				newMax = true;
-				aHeightCount = aHeightCount + 1;
-			}
-		
-			if(maxPath > gmaxPath) {			
-				gmaxPath = maxPath;		
-				newMax = true;
-				aPathCount = aPathCount + 1;
-			}
-			if(newMax) {
-				System.out.println("PC: " + pathCount + " HC: " + heightCount + " S: " + current + " M: " + maxValue + " P: " + maxPath 
+			if(maxValue > globalMaxValue) {			
+				globalMaxValue = maxValue;
+				aHeightCount = aHeightCount + 1L;
+				System.out.println("MC: " + pathCount + " HC: " + heightCount + " S: " + current + " M: " + maxValue + " P: " + path 
 						+ " T: " + (System.currentTimeMillis() - lastMaxTime));
 				lastMaxTime = System.currentTimeMillis();
 			}
-			current = current + 2;	
+		
+			if(path > globalMaxPath) {			
+				globalMaxPath = path;		
+				aPathCount = aPathCount + 1;
+				System.out.println("PC: " + pathCount + " HC: " + heightCount + " S: " + current + " M: " + maxValue + " P: " + path 
+						+ " T: " + (System.currentTimeMillis() - lastMaxTime));
+				lastMaxTime = System.currentTimeMillis();
+			}
+			current = current + 2L;	
 		}
+		System.out.println("Last check: " + current);
 		System.out.println("Total time: " + (System.currentTimeMillis() - totalStartTime));
 	}
 
