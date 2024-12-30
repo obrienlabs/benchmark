@@ -17,7 +17,7 @@
         <configuration>
           <!-- source>1.11</source>
           <target>1.11</target-->
-          <release>17</release>
+          <release>21</release>
         </configuration>
       </plugin>
   </plugins>
